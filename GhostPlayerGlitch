@@ -1,0 +1,14 @@
+for i,v in pairs(game.Players:GetPlayers()) do
+    if v ~= game.Players.LocalPlayer then
+        v.Parent = nil
+    end
+end
+
+game.Players.ChildAdded:Connect(function(Plr)
+    repeat
+        game["Run Service"].RenderStepped:Wait()
+        pcall(function()
+            Plr.Parent = nil
+        end)
+    until Plr.Parent == nil
+end)
